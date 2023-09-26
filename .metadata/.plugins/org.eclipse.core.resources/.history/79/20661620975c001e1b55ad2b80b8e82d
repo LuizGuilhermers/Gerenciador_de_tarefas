@@ -1,0 +1,5 @@
+package com.gerenciamento.entities;
+
+public class ItemExecucao {
+
+}

@@ -1,0 +1,56 @@
+package com.gerenciamento.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gerenciamento.entities.Tarefa;
+import com.gerenciamento.repository.TarefaRepository;
+
+@Service
+public class TarefaService {
+	
+	private final TarefaRepository tarefaRepository;
+	
+	@Autowired
+	public TarefaService (TarefaRepository tarefaRepository) {
+		this.tarefaRepository = tarefaRepository;
+	}
+	
+	public Tarefa saveTarefa (Tarefa tarefa) {
+		return tarefaRepository.save(tarefa);
+	}
+	
+	public Tarefa getTarefaById (Long id) {
+		return tarefaRepository.findById(id).orElse(null);
+	}
+	public List<Tarefa> getAllTarefa(){
+		return tarefaRepository.findAll();
+	}
+	public Tarefa updateTarefa(Long id, Tarefaa updatedTarefa) {
+		Optional<Tarefa> existingTarefa = tarefaRepository.findById(id);
+
+		if (existingTarefa.isPresent()) {
+			updatedTarefa.setId(id);
+			return tarefaRepository.save(updatedTarefa);
+		}
+		return null;
+	}
+
+		public boolean deleteDrogaria(Long id) {
+			Optional <Drogaria> existingDrogaria = drogariaRepository.findById(id);
+			if (existingDrogaria.isPresent()) {
+				drogariaRepository.deleteById(id);
+				return true;
+			}
+			return false;
+
+		}
+
+	
+	
+	
+	
+	
+	
+
+}

@@ -1,0 +1,5 @@
+package com.gerenciamento;
+
+public interface TarefaRepository {
+
+}

@@ -1,0 +1,28 @@
+package com.gerenciamento.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gerenciamento.repository.TarefaRepository;
+
+@Service
+public class TarefaService {
+	
+	private final TarefaRepository tarefaRepository;
+	
+	@Autowired
+	public TarefaService (TarefaRepository tarefaRepository) {
+		this.tarefaRepository = tarefaRepository;
+	}
+	
+	public Tarefa saveTarefa (Tarefa tarefa) {
+		return tarefaRepository.save(tarefa);
+	}
+	
+	public Tarefa getTarefaById (Long id) {
+		return tarefaRepository.findById(id).orElse(null);
+	}
+	
+	
+
+}
